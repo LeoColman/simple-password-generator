@@ -37,7 +37,7 @@ dependencies {
   testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
 
   // Mockk
-  testImplementation("io.mockk:mockk:1.12.2")
+  testImplementation("io.mockk:mockk:1.12.3")
 }
 
 tasks.withType<KotlinCompile> {
