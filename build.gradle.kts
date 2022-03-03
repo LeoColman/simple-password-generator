@@ -22,7 +22,7 @@ plugins {
   `maven-publish`
   signing
   id("org.jetbrains.dokka") version "1.6.10"
-  id("io.gitlab.arturbosch.detekt").version("1.15.0-RC1")
+  id("io.gitlab.arturbosch.detekt").version("1.20.0-RC1")
 }
 
 group = "br.com.colman"
@@ -35,9 +35,10 @@ repositories {
 dependencies {
   // Kotest
   testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
+  testImplementation("io.kotest:kotest-property:5.1.0")
 
   // Mockk
-  testImplementation("io.mockk:mockk:1.12.2")
+  testImplementation("io.mockk:mockk:1.12.3")
 }
 
 tasks.withType<KotlinCompile> {
@@ -97,7 +98,7 @@ publishing {
 
         licenses {
           license {
-            name.set("The Apache 2.0 License")
+            name.set("Apache-2.0")
             url.set("https://opensource.org/licenses/Apache-2.0")
           }
         }

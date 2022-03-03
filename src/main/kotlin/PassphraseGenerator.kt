@@ -13,5 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package br.com.colman.passphrase
 
-rootProject.name = "simple-password-generator"
+public class PassphraseGenerator(
+  private val words: Collection<String>
+) {
+
+  public fun generate(wordAmount: Int = 3): String {
+    require(wordAmount in 1..words.size)
+    return words.shuffled().take(wordAmount).joinToString()
+  }
+}
