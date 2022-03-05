@@ -13,70 +13,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
 package br.com.colman.passphrase
 
+import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.inspectors.forAll
 import io.kotest.inspectors.forExactly
 import io.kotest.inspectors.forNone
+import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.collections.shouldNotContainDuplicates
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldContainOnlyOnce
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.Codepoint
 import io.kotest.property.arbitrary.az
+import io.kotest.property.arbitrary.int
+import io.kotest.property.arbitrary.negativeInt
 import io.kotest.property.arbitrary.string
 import io.kotest.property.arbitrary.take
+import io.kotest.property.checkAll
+import io.kotest.property.forAll
+import java.lang.ClassLoader.getSystemResourceAsStream as resource
 
 class PassphraseGeneratorSpec : FunSpec({
-  context("Amount of words") {
-    val words = Arb.string(3, 30, Codepoint.az()).take(100).toSet()
 
-    val target = PassphraseGenerator(words)
+  test("Default word list to EFF big word list") {
+    val wordlist = resource("eff_large_wordlist.txt").bufferedReader().readLines()
 
-    test("Generates the amount of words I expect") {
-      val result = target.generate(5)
-      words.forExactly(5) {
-        result shouldContainOnlyOnce it
-      }
-    }
+    WordGenerator.words shouldBe wordlist
+  }
 
-    test("Generates 3 words by default") {
-      val result = target.generate()
-      words.forExactly(3) {
-        result shouldContainOnlyOnce it
-      }
-    }
+  test("Includes a separator between the words") {
+    1 shouldBe 1
+  }
 
-    test("Doesn't contain extra words from outside wordlist") {
-      var result = target.generate(30)
-
-      words.forEach { result = result.replace(it, "") }
-
-      result.toList().forNone { it.isLetter() shouldBe true }
-    }
-
-    test("Doesn't repeat words") {
-      var result = target.generate(30)
-
-      words.forEach { result = result.replaceFirst(it, "") }
-
-      result.toList().forNone { it.isLetter() shouldBe true }
-    }
-
-    test("Doesn't remove words from word pool for next generate") {
-      repeat(100) {
-        target.generate(30)
-      }
-    }
-
-    test("Throws errors if I request an out of bounds amount of words") {
-      shouldThrowAny { target.generate(words.size + 1) }
-      shouldThrowAny { target.generate(0) }
-      shouldThrowAny { target.generate(-1) }
-    }
-
-    test("Parameter order") {
-      TODO("We must check the paremeter order to avoid breaking clients")
-    }
+  test("Defaults to hyphen (-) as the separator") {
+    1 shouldBe 1
   }
 })

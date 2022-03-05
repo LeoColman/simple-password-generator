@@ -13,12 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.com.colman.passphrase
 
+public fun WordGenerator(words: Collection<String>): WordGenerator = object : WordGenerator {
+  override val words: Collection<String> = words
+}
 
-public class PassphraseGenerator(
-  wordGenerator: WordGenerator
-) {
+public interface WordGenerator {
+  // TODO create issue in Kotlin repository about explicit apis
+  // This public modifier isn't necessary, as it's obligatorily public.
+  public val words: Collection<String>
+    get() = BigWordList
 
+  public fun generateWords(wordAmount: Int = 3): List<String> {
+    require(wordAmount in 1..words.size)
+    return words.shuffled().take(wordAmount)
+  }
 
+  public companion object : WordGenerator
 }

@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.com.colman.passphrase
 
+import io.kotest.core.config.AbstractProjectConfig
+import io.kotest.core.test.AssertionMode
 
-public class PassphraseGenerator(
-  wordGenerator: WordGenerator
-) {
-
-
+class ProjectConfig : AbstractProjectConfig() {
+  override val assertionMode = AssertionMode.Error
 }

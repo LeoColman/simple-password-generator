@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import kotlinx.kover.api.CoverageEngine
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.lang.System.getenv
 
@@ -23,6 +24,7 @@ plugins {
   signing
   id("org.jetbrains.dokka") version "1.6.10"
   id("io.gitlab.arturbosch.detekt").version("1.20.0-RC1")
+  id("org.jetbrains.kotlinx.kover") version "0.5.0"
 }
 
 group = "br.com.colman"
@@ -51,6 +53,10 @@ tasks.withType<Test> {
 
 kotlin {
   explicitApi()
+}
+
+kover {
+  coverageEngine.set(CoverageEngine.INTELLIJ)
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

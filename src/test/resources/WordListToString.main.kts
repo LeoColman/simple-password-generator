@@ -1,3 +1,4 @@
+#!/usr/bin/env kotlin
 /*
  * Copyright 2022 Leonardo Colman Lopes, Luiz Neves Porto
  *
@@ -13,12 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.colman.passphrase
+import java.io.File
 
+val file = File("./eff_large_wordlist.txt")
 
-public class PassphraseGenerator(
-  wordGenerator: WordGenerator
-) {
+val target = File("./converted.txt")
 
+val transformedFile = file.readLines().map {
+  "\"" + it + "\"" + ","
+}.joinToString("\n")
 
-}
+target.writeText(transformedFile)
