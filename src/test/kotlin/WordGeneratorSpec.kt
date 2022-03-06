@@ -25,21 +25,15 @@ import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotContainDuplicates
-import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldHave
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
-import java.lang.ClassLoader.*
-import kotlin.system.measureNanoTime
 import java.lang.ClassLoader.getSystemResourceAsStream as resource
-
 
 class WordGeneratorSpec : FunSpec({
 
   context("Word list") {
-
     test("Default word list to EFF big word list") {
       val wordlist = resource("eff_large_wordlist.txt").bufferedReader().readLines()
 
@@ -47,6 +41,7 @@ class WordGeneratorSpec : FunSpec({
       WordGenerator.words shouldBe wordlist
     }
   }
+
   context("Word generator") {
     val target = WordGenerator
 
@@ -56,11 +51,6 @@ class WordGeneratorSpec : FunSpec({
     }
 
     test("Generates 3 words by default") {
-      target.generateWords() shouldHaveSize 3
-    }
-
-    test("Generates 3 words by default companion") {
-      val target = WordGenerator.Companion
       target.generateWords() shouldHaveSize 3
     }
 
@@ -94,5 +84,17 @@ class WordGeneratorSpec : FunSpec({
       shouldThrowAny { target.generateWords(target.words.size + 1) }
     }
   }
-})
 
+  context("Generator constructor function") {
+    test("Uses the list passed as argument") {
+      val arg = listOf("a")
+      val gen = WordGenerator(arg)
+      gen.words shouldBe arg
+    }
+
+    test("Has BigWordList as the default word list") {
+      val gen = WordGenerator()
+      gen.words shouldBe BigWordList
+    }
+  }
+})

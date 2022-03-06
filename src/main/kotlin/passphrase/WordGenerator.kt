@@ -16,7 +16,7 @@
 
 package br.com.colman.passphrase
 
-public fun WordGenerator(words: Collection<String>): WordGenerator = object : WordGenerator {
+public fun WordGenerator(words: Collection<String> = BigWordList): WordGenerator = object : WordGenerator {
   override val words: Collection<String> = words
 }
 
