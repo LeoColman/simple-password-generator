@@ -16,20 +16,65 @@
 
 package br.com.colman.passphrase
 
-public fun WordGenerator(words: Collection<String> = BigWordList): WordGenerator = object : WordGenerator {
-  override val words: Collection<String> = words
+import kotlin.random.Random
+import com.soywiz.krypto.SecureRandom as KryptoSecureRandom
+
+/**
+ * Works as a constructor function for [WordGenerator]
+ *
+ * When one needs to customize how [WordGenerator] will work, this function
+ * can be used to tweak the parameters.
+ * The default values are good enough for most use cases.
+ */
+public fun WordGenerator(
+  words: Collection<String> = BigWordList,
+  random: Random = KryptoSecureRandom
+): WordGenerator = object : WordGenerator {
+  override val words = words
+  override val random = random
 }
 
 public interface WordGenerator {
-  // TODO create issue in Kotlin repository about explicit apis
-  // This public modifier isn't necessary, as it's obligatorily public.
+
+  /**
+   * Word pool
+   *
+   * [WordGenerator] will get random words from this collection to generate
+   * words.
+   */
   public val words: Collection<String>
     get() = BigWordList
 
+  /**
+   * How to roll the dice for the word list
+   *
+   * Uses by default a SecureRandom provided by [Krypto library]
+   * Not usually necessary to change, as there are not many scenarios
+   * where you need an specific random source.
+   *
+   * Implementations are encouraged to keep the default KryptoSecureRandom
+   */
+  public val random: Random
+    get() = KryptoSecureRandom
+
+  /**
+   * Generates [wordAmount] words from [words]
+   *
+   * Random numbers are provided by [random]
+   *
+   * [wordAmount] Must be strictly in [1, word.size]
+   */
   public fun generateWords(wordAmount: Int = 3): List<String> {
     require(wordAmount in 1..words.size)
-    return words.shuffled().take(wordAmount)
+    return words.shuffled(random).take(wordAmount)
   }
 
+  /**
+   * Functions as a default implementation of [WordGenerator].
+   * Added to the companion object so that:
+   *  1 - The companion object can be extended
+   *  2 - [WordGenerator] can be used statically
+   *  3 - A sensible default value is provided to generate words without hassle
+   */
   public companion object : WordGenerator
 }

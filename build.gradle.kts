@@ -34,6 +34,9 @@ repositories {
 }
 
 dependencies {
+  // Krypto
+  implementation("com.soywiz.korlibs.krypto:krypto:2.5.2")
+
   // Kotest
   testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
   testImplementation("io.kotest:kotest-property:5.1.0")
