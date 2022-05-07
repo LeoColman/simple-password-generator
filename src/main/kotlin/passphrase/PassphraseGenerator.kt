@@ -15,6 +15,8 @@
  */
 package br.com.colman.passphrase
 
+import br.com.colman.passphrase.WordGenerator
+
 
 public class PassphraseGenerator(
   wordGenerator: WordGenerator

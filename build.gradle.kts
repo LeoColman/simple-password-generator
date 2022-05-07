@@ -22,7 +22,7 @@ plugins {
   `maven-publish`
   signing
   id("org.jetbrains.dokka") version "1.6.10"
-  id("io.gitlab.arturbosch.detekt").version("1.20.0-RC1")
+  id("io.gitlab.arturbosch.detekt").version("1.20.0")
   id("org.jetbrains.kotlinx.kover") version "0.5.0"
 }
 
@@ -55,6 +55,10 @@ tasks.withType<Test> {
 
 kotlin {
   explicitApi()
+}
+
+detekt {
+   buildUponDefaultConfig = true
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

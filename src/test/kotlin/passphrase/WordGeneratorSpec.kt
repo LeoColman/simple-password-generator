@@ -18,12 +18,13 @@
 
 package br.com.colman.passphrase
 
+import br.com.colman.passphrase.BigWordList
+import br.com.colman.passphrase.WordGenerator
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldContainAll
-import io.kotest.matchers.collections.shouldContainDuplicates
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotContainDuplicates
 import io.kotest.matchers.shouldBe

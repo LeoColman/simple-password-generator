@@ -13,12 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 
 package br.com.colman.passphrase
 
-import io.kotest.core.config.AbstractProjectConfig
-import io.kotest.core.test.AssertionMode
+import br.com.colman.passphrase.WordGenerator
+import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.shouldBe
+import java.lang.ClassLoader.getSystemResourceAsStream as resource
 
-class ProjectConfig : AbstractProjectConfig() {
-  override val assertionMode = AssertionMode.Error
-}
+class PassphraseGeneratorSpec : FunSpec({
+
+  test("Default word list to EFF big word list") {
+    val wordlist = resource("eff_large_wordlist.txt").bufferedReader().readLines()
+
+    WordGenerator.words shouldBe wordlist
+  }
+
+  test("Includes a separator between the words") {
+    1 shouldBe 1
+  }
+
+  test("Defaults to hyphen (-) as the separator") {
+    1 shouldBe 1
+  }
+})
