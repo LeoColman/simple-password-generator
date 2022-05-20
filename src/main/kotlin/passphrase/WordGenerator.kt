@@ -16,8 +16,9 @@
 
 package br.com.colman.passphrase
 
+import java.security.SecureRandom
 import kotlin.random.Random
-import com.soywiz.krypto.SecureRandom as KryptoSecureRandom
+import kotlin.random.asKotlinRandom
 
 /**
  * Works as a constructor function for [WordGenerator]
@@ -28,7 +29,7 @@ import com.soywiz.krypto.SecureRandom as KryptoSecureRandom
  */
 public fun WordGenerator(
   words: Collection<String> = BigWordList,
-  random: Random = KryptoSecureRandom
+  random: Random = SecureRandom().asKotlinRandom()
 ): WordGenerator = object : WordGenerator {
   override val words = words
   override val random = random
@@ -55,7 +56,7 @@ public interface WordGenerator {
    * Implementations are encouraged to keep the default KryptoSecureRandom
    */
   public val random: Random
-    get() = KryptoSecureRandom
+    get() = SecureRandom().asKotlinRandom()
 
   /**
    * Generates [wordAmount] words from [words]

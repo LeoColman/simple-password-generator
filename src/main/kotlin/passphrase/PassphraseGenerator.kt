@@ -15,14 +15,14 @@
  */
 package br.com.colman.passphrase
 
-import br.com.colman.passphrase.WordGenerator
+import java.security.SecureRandom
 import java.util.Locale
 import kotlin.random.Random
-import com.soywiz.krypto.SecureRandom as KryptoSecureRandom
+import kotlin.random.asKotlinRandom
 
 
 public class PassphraseGenerator(
-  private val random: Random = KryptoSecureRandom,
+  private val random: Random = SecureRandom().asKotlinRandom(),
   private val wordGenerator: WordGenerator = WordGenerator(random = random)
 ) {
 

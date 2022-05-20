@@ -18,8 +18,6 @@
 
 package br.com.colman.passphrase
 
-import br.com.colman.passphrase.BigWordList
-import br.com.colman.passphrase.WordGenerator
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.FunSpec
@@ -28,11 +26,12 @@ import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotContainDuplicates
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeInstanceOf
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
+import java.security.SecureRandom
 import kotlin.random.Random
-import com.soywiz.krypto.SecureRandom as KryptoSecureRandom
 import java.lang.ClassLoader.getSystemResourceAsStream as resource
 
 class WordGeneratorSpec : FunSpec({
@@ -100,17 +99,9 @@ class WordGeneratorSpec : FunSpec({
       val gen = WordGenerator()
       gen.words shouldBe BigWordList
     }
-
-    test("Has a secure number generator by default") {
-      WordGenerator().random shouldBe KryptoSecureRandom
-    }
   }
 
   context("Random number generation") {
-    test("Must be a secure number generator by default") {
-      WordGenerator.random shouldBe KryptoSecureRandom
-    }
-
     test("Uses the provided random as numbers source") {
       val lists = List(1000) { WordGenerator(random = Random(1)).generateWords(100) }
 
