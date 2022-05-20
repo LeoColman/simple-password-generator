@@ -26,7 +26,12 @@ public class PassphraseGenerator(
   private val wordGenerator: WordGenerator = WordGenerator(random = random)
 ) {
 
-  public fun generate(wordAmount: Int = 3, separator: String = "-", includeNumber: Boolean = true, titleCaseWords: Boolean = true): String {
+  public fun generate(
+    wordAmount: Int = 3,
+    separator: String = "-",
+    includeNumber: Boolean = true,
+    titleCaseWords: Boolean = true
+  ): String {
     val words = wordGenerator.generateWords(wordAmount)
 
     val wordsWithNumbers = if(includeNumber) {
@@ -41,6 +46,8 @@ public class PassphraseGenerator(
   }
 
   private fun List<String>.capitalizeAll() = map { it.capitalized() }
+
+  @Suppress("MagicNumber")
   private fun List<String>.includeRandomNumberAtEndOfRandomWord(): List<String> {
     val randomNumber = random.nextInt(0, 10)
     val randomIndex = random.nextInt(0, size)
