@@ -5,7 +5,9 @@
 [![Tests](https://github.com/LeoColman/simple-password-generator/actions/workflows/tests.yml/badge.svg)](https://github.com/LeoColman/simple-password-generator/actions/workflows/tests.yml)
 
 
-[![GitHub](https://img.shields.io/github/license/LeoColman/simple-password-generator)](https://github.com/LeoColman/simple-password-generator/blob/master/LICENSE) [![Maven Central](https://img.shields.io/maven-central/v/group/simple-password-generator.svg)](https://search.maven.org/search?q=g:group)
+[![GitHub](https://img.shields.io/github/license/LeoColman/simple-password-generator)](https://github.com/LeoColman/simple-password-generator/blob/master/LICENSE) 
+
+[![Maven Central](https://img.shields.io/maven-central/v/br.com.colman/simple-password-generator)](https://search.maven.org/search?q=g:br.com.colman)
 
 Simple Password Generator tries to be a simple library to include in your project if you just want some quick password
 generation.
@@ -22,7 +24,7 @@ This library is available at Maven Central. You might need to include it in your
 
 You can then add it as a dependency to your project:
 
-[![Maven Central](https://img.shields.io/maven-central/v/group/simple-password-generator.svg)](https://search.maven.org/search?q=g:group)
+[![Maven Central](https://img.shields.io/maven-central/v/br.com.colman/simple-password-generator)](https://search.maven.org/search?q=g:br.com.colman)
 
 ```
 dependencies {
