@@ -39,7 +39,7 @@ dependencies {
   testImplementation("io.kotest:kotest-property:5.3.0")
 
   // Mockk
-  testImplementation("io.mockk:mockk:1.12.3")
+  testImplementation("io.mockk:mockk:1.12.4")
 }
 
 tasks.withType<KotlinCompile> {
