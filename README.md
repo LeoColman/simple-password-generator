@@ -17,9 +17,9 @@ generation.
 This library is available at Maven Central. You might need to include it in your repositories:
 
 ```
-    repositories {
-        mavenCentral()
-    }
+repositories {
+    mavenCentral()
+}
 ```
 
 You can then add it as a dependency to your project:
@@ -35,8 +35,8 @@ dependencies {
 # Basic Usage
 
 ```
-    PasswordGenerator.Default.generate()    // Gives you a 8 character string with a number and a special character
-    PassphraseGenerator.Default.generate()  // Gives you a 3 random words string separated by a hyphen, including a number 
+PasswordGenerator.Default.generate()    // Gives you a 8 character string with a number and a special character
+PassphraseGenerator.Default.generate()  // Gives you a 3 random words string separated by a hyphen, including a number 
 ```
 
 # Advanced configuration
