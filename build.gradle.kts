@@ -35,7 +35,7 @@ repositories {
 
 dependencies {
   // Kotest
-  testImplementation("io.kotest:kotest-runner-junit5:5.5.0")
+  testImplementation("io.kotest:kotest-runner-junit5:5.5.2")
   testImplementation("io.kotest:kotest-property:5.5.1")
 }
 
