@@ -22,7 +22,7 @@ plugins {
   `maven-publish`
   signing
   id("org.jetbrains.dokka") version "1.7.20"
-  id("io.gitlab.arturbosch.detekt").version("1.20.0")
+  id("io.gitlab.arturbosch.detekt").version("1.22.0")
   id("org.jetbrains.kotlinx.kover") version "0.6.1"
 }
 
