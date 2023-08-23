@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.lang.System.getenv
 
 plugins {
-  kotlin("jvm") version "1.9.0"
+  kotlin("jvm") version "1.9.10"
   `maven-publish`
   signing
   id("org.jetbrains.dokka") version "1.8.20"
