@@ -36,7 +36,7 @@ repositories {
 dependencies {
   // Kotest
   testImplementation("io.kotest:kotest-runner-junit5:5.9.0")
-  testImplementation("io.kotest:kotest-property:5.8.1")
+  testImplementation("io.kotest:kotest-property:5.9.0")
 }
 
 tasks.withType<KotlinCompile> {
