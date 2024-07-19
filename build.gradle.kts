@@ -23,7 +23,7 @@ plugins {
   signing
   id("org.jetbrains.dokka") version "1.9.20"
   id("io.gitlab.arturbosch.detekt").version("1.23.6")
-  id("org.jetbrains.kotlinx.kover") version "0.8.2"
+  id("org.jetbrains.kotlinx.kover") version "0.8.3"
 }
 
 group = "br.com.colman"
